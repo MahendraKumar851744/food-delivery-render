@@ -9,7 +9,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 DEBUG = True
 
-ALLOWED_HOSTS =  ["django-food-delivery-render.onrender.com localhost"]
+ALLOWED_HOSTS =  ["django-food-delivery-render.onrender.com"]
 
 
 INSTALLED_APPS = [
