@@ -5,16 +5,12 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = "django-insecure-kv2wvcxu%(g5!6)-cqre#-v#c^-0z#*xun5%)-lp%!ysnqla^4"
 
-DEBUG = os.environ.get("DEBUG","False").lower() == "true"
+DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS")
+ALLOWED_HOSTS = []
 
-if ALLOWED_HOSTS is None:
-    ALLOWED_HOSTS = []  
-else:
-    ALLOWED_HOSTS = ALLOWED_HOSTS.split(" ")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -70,10 +66,8 @@ DATABASES = {
         'PORT': '5432'
     }
 }
-# django-insecure-kv2wvcxu%(g5!6)-cqre#-v#c^-0z#*xun5%)-lp%!ysnqla^4
-#"postgres://food_delivery_render_user:PKYwkKxv32wqkNta1W8Q5V7nt2Ed5O6l@dpg-cn5q1in109ks73a089bg-a.oregon-postgres.render.com/food_delivery_render"
-database_url = os.environ.get("DATABASE_URL")
-DATABASES['default'] = dj_database_url.parse(database_url)
+
+DATABASES['default'] = dj_database_url.parse("postgres://food_delivery_render_user:PKYwkKxv32wqkNta1W8Q5V7nt2Ed5O6l@dpg-cn5q1in109ks73a089bg-a.oregon-postgres.render.com/food_delivery_render")
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
