@@ -7,9 +7,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
-DEBUG = os.environ.get("DEBUG","False").lower() == "true"
+DEBUG = True
 
-  = os.environ.get("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS =  ["django-food-delivery-render.onrender.com localhost"]
 
 
 INSTALLED_APPS = [
@@ -66,7 +66,6 @@ DATABASES = {
         'PORT': '5432'
     }
 }
-# "postgres://food_delivery_render_user:PKYwkKxv32wqkNta1W8Q5V7nt2Ed5O6l@dpg-cn5q1in109ks73a089bg-a.oregon-postgres.render.com/food_delivery_render"
 database_url = os.environ.get("DATABASE_URL")
 DATABASES['default'] = dj_database_url.parse(database_url)
 
