@@ -24,7 +24,6 @@ urlpatterns = [
          include([
              path('calculate_delivery_price/', views.CalculateDeliveryPrice.as_view()),
              path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-
          ])
         
     )

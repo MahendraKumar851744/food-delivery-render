@@ -5,8 +5,8 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECRET_KEY = os.environ.get("SECRET_KEY")
-SECRET_KEY = '3rtyjukfmnndjkjnb'
+SECRET_KEY = os.environ.get("SECRET_KEY")
+# SECRET_KEY = '3rtyjukfmnndjkjnb'
 
 DEBUG = True
 
@@ -69,8 +69,8 @@ DATABASES = {
         'PORT': '5432'
     }
 }
-# database_url = os.environ.get("DATABASE_URL")
-# DATABASES['default'] = dj_database_url.parse(database_url)
+database_url = os.environ.get("DATABASE_URL")
+DATABASES['default'] = dj_database_url.parse(database_url)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
