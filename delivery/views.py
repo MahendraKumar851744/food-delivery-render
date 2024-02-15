@@ -6,11 +6,7 @@ from .serializers import DeliveryPriceSerializer
 
 
 class CalculateDeliveryPrice(GenericAPIView): 
-    """
-    API endpoint to calculate delivery costs for different types of food items across various zones based on the distance and item type.
-    """
     serializer_class = DeliveryPriceSerializer
-
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
 
