@@ -8,54 +8,18 @@ from rest_framework import permissions
 api_description = """
 The Food Delivery API provides endpoints for calculating delivery costs for different types of food items across various zones based on distance and item type. 
 
-<b>Sample Data</b> (Not the actual schema)
+For complete documentation, please visit <a href="https://django-food-delivery-render.onrender.com/">API Documentation</a>.
 
-<table>
-    <tr>
-        <td><b>Organization ID</b></td>
-        <td><b>Name</b></td>
-        <td><b>Zone</b></td>
-        <td><b>Item Type</b></td>
-        <td><b>Per KM price</b></td>
-        <td><b>Fixed Price</b></td>
-        <td><b>Base Price</b></td>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>Google</td>
-        <td>central</td>
-        <td>perishable</td>
-        <td>1.5</td>
-        <td>10</td>
-        <td>5</td>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>Google</td>
-        <td>central</td>
-        <td>non_perishable</td>
-        <td>1</td>
-        <td>10</td>
-        <td>5</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>Apple</td>
-        <td>north</td>
-        <td>perishable</td>
-        <td>1.5</td>
-        <td>10</td>
-        <td>5</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>Apple</td>
-        <td>north</td>
-        <td>non_perishable</td>
-        <td>1</td>
-        <td>10</td>
-        <td>5</td>
-    </tr>
+<h3>Test the API</h3>
+To test the API, you can send a POST request with the following JSON payload:
+
+```json
+{
+    "zone": "central",
+    "organization_id": "1",
+    "total_distance": 12,
+    "item_type": "perishable"
+}
 """
 
 
@@ -75,7 +39,8 @@ urlpatterns = [
          include([
              path('calculate_delivery_price/', views.CalculateDeliveryPrice.as_view()),
              path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-         ])
-        
-    )
+         ]) 
+    ),
+     path('', views.IndexView.as_view(), name='index'),
+    
 ]

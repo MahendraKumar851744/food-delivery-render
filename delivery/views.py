@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .services import PriceCalculator
 from .serializers import DeliveryPriceSerializer
-
+from django.views.generic import TemplateView
 
 class CalculateDeliveryPrice(GenericAPIView): 
     serializer_class = DeliveryPriceSerializer
@@ -26,3 +26,9 @@ class CalculateDeliveryPrice(GenericAPIView):
             return Response({'total_price': total_price}, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Pricing not found for given inputs'}, status=status.HTTP_400_BAD_REQUEST)
+        
+
+
+class IndexView(TemplateView):
+    template_name = 'index.html'       
+    
