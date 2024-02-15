@@ -17,7 +17,7 @@ To test the API, you can send a POST request with the following JSON payload:
 {
     "zone": "central",
     "organization_id": "1",
-    "total_distance": 12,
+    "total_distance": "12",
     "item_type": "perishable"
 }
 """
