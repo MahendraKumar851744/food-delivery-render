@@ -8,24 +8,109 @@ from rest_framework import permissions
 api_description = """
 The Food Delivery API provides endpoints for calculating delivery costs for different types of food items across various zones based on distance and item type. 
 
-<p>There are different zones available in the database right now:</p>
-    <ul>
-        <li>Central</li>
-        <li>North</li>
-        <li>South</li>
-        <li>East</li>
-        <li>West</li>
-    </ul>
+<b>Sample Data</b> (Not the actual schema)
 
-<p>Each have different items types, which can either be perishable or non-perishable.</p>
-
-<p>We also have different organizations in the database:</p>
-<ul>
-    <li>Organization ID: 1</li>
-    <li>Organization ID: 2</li>
-    <li>Organization ID: 3</li>
-    <li>Organization ID: 4</li>
-</ul>
+<table>
+    <tr>
+        <td><b>Organization ID</b></td>
+        <td><b>Name</b></td>
+        <td><b>Zone</b></td>
+        <td><b>Item Type</b></td>
+        <td><b>Per KM price</b></td>
+        <td><b>Fixed Price</b></td>
+        <td><b>Base Price</b></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Google</td>
+        <td>central</td>
+        <td>perishable</td>
+        <td>1.5</td>
+        <td>10</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Google</td>
+        <td>central</td>
+        <td>non_perishable</td>
+        <td>1</td>
+        <td>10</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Apple</td>
+        <td>north</td>
+        <td>perishable</td>
+        <td>1.5</td>
+        <td>10</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Apple</td>
+        <td>north</td>
+        <td>non_perishable</td>
+        <td>1</td>
+        <td>10</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Microsoft</td>
+        <td>south</td>
+        <td>perishable</td>
+        <td>2</td>
+        <td>10</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Microsoft</td>
+        <td>south</td>
+        <td>non_perishable</td>
+        <td>1.5</td>
+        <td>10</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Viga</td>
+        <td>east</td>
+        <td>perishable</td>
+        <td>2</td>
+        <td>10</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Viga</td>
+        <td>east</td>
+        <td>non_perishable</td>
+        <td>1.5</td>
+        <td>10</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Amazon</td>
+        <td>west</td>
+        <td>perishable</td>
+        <td>1</td>
+        <td>20</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Amazon</td>
+        <td>west</td>
+        <td>non_perishable</td>
+        <td>1</td>
+        <td>20</td>
+        <td>10</td>
+    </tr>    
+</table>
 
 For complete documentation, please visit <a href="http://127.0.0.1:8000/api/v1/documentation/">API Documentation</a>.
 

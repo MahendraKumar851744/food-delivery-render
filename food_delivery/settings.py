@@ -70,7 +70,7 @@ DATABASES = {
 }
 # Render's psql 
 database_url = os.environ.get("DATABASE_URL")
-DATABASES['default'] = dj_database_url.parse(database_url)
+DATABASES['default'] = dj_database_url.parse('postgres://food_delivery_render_user:PKYwkKxv32wqkNta1W8Q5V7nt2Ed5O6l@dpg-cn5q1in109ks73a089bg-a.oregon-postgres.render.com/food_delivery_render')
 
 
 AUTH_PASSWORD_VALIDATORS = [
