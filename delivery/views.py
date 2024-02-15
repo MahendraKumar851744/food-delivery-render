@@ -1,42 +1,32 @@
-from django.http import JsonResponse
+from rest_framework.generics import GenericAPIView
+from rest_framework.response import Response
+from rest_framework import status
 from .services import PriceCalculator
-from django.views.decorators.csrf import csrf_exempt
-from decimal import Decimal
-import re
+from .serializers import DeliveryPriceSerializer
 
-@csrf_exempt
-def calculate_delivery_price(request):
-    if request.method == 'POST':
-        data = request.POST
 
-        if 'zone' not in data or 'organization_id' not in data or 'total_distance' not in data or 'item_type' not in data:
-            return JsonResponse({'error': 'Missing required fields'}, status=400)
+class CalculateDeliveryPrice(GenericAPIView): 
+    """
+    API endpoint to calculate delivery costs for different types of food items across various zones based on the distance and item type.
+    """
+    serializer_class = DeliveryPriceSerializer
 
-        zone = data.get('zone')
-        organization_id = data.get('organization_id')
-        total_distance_str = data.get('total_distance')
-        item_type = data.get('item_type')
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        validated_data = serializer.validated_data
         
-        if not re.match(r'^-?\d+(\.\d+)?$', total_distance_str):
-            return JsonResponse({'error': 'Invalid total_distance value. Must be a decimal number'}, status=400)
-
-        try:
-            total_distance = Decimal(total_distance_str)
-        except ValueError:
-            return JsonResponse({'error': 'Invalid total_distance value'}, status=400)
-
-        if total_distance <= 0:
-            return JsonResponse({'error': 'Total_distance must be a positive number'}, status=400)
-
-        if item_type not in ['perishable', 'non_perishable']:
-            return JsonResponse({'error': 'Invalid item_type value. Must be perishable or non_perishable'}, status=400)
-
+        zone = validated_data.get('zone')
+        organization_id = validated_data.get('organization_id')
+        total_distance = validated_data.get('total_distance')
+        item_type = validated_data.get('item_type')
 
         total_price = PriceCalculator.calculate_price(zone, organization_id, total_distance, item_type)
 
         if total_price is not None:
-            return JsonResponse({'total_price': total_price})
+            return Response({'total_price': total_price}, status=status.HTTP_200_OK)
         else:
-            return JsonResponse({'error': 'Pricing not found for given inputs'}, status=400)
-    else:
-        return JsonResponse({'error': 'Only POST requests are allowed'}, status=405)
+            return Response({'error': 'Pricing not found for given inputs'}, status=status.HTTP_400_BAD_REQUEST)
